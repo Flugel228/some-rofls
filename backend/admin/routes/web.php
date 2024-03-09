@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
     Route::get('/', 'HomeController');
+    Route::resource('images', 'ImageController');
 });
