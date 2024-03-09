@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Image;
+namespace App\Http\Requests\Admin\History;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,9 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'image'
+            'type' => 'required|integer',
+            'image_id' => 'required|exists:images,id',
+            'prev_history' => 'required|integer',
         ];
     }
 }

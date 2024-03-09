@@ -2,17 +2,17 @@
 
 namespace App\Repositories;
 
-use App\Contracts\Repositories\ImageRepositoryContract;
-use App\Models\Image;
+use App\Contracts\Repositories\HistoryRepositoryContract;
+use App\Models\History;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 
-class ImageRepository extends CoreRepository implements ImageRepositoryContract
+class HistoryRepository extends CoreRepository implements HistoryRepositoryContract
 {
 
     protected function getModelClass(): string
     {
-        return Image::class;
+        return History::class;
     }
 
     public function paginate(int $quantity, int $page): LengthAwarePaginator
@@ -20,19 +20,19 @@ class ImageRepository extends CoreRepository implements ImageRepositoryContract
         return $this->startConditions()
             ->paginate(
                 $quantity,
-                ['id', 'url', 'created_at'],
+                ['*'],
                 'page',
                 $page
             );
     }
 
-    public function create(array $data): Image
+    public function create(array $data): History
     {
         return $this->startConditions()->create($data);
     }
 
     public function update(
-        int   $id,
+        int $id,
         array $data,
     ): bool
     {
@@ -48,7 +48,7 @@ class ImageRepository extends CoreRepository implements ImageRepositoryContract
             ->delete();
     }
 
-    public function findById(int $id): Image|null
+    public function findById(int $id): History|null
     {
         return $this->startConditions()
             ?->find($id);
@@ -59,8 +59,8 @@ class ImageRepository extends CoreRepository implements ImageRepositoryContract
         return $this->startConditions()
             ->select([
                 'id',
-                'url',
             ])
             ->get();
     }
+
 }
