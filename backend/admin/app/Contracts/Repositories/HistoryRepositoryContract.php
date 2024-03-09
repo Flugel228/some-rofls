@@ -2,11 +2,11 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Models\Image;
+use App\Models\History;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 
-interface ImageRepositoryContract
+interface HistoryRepositoryContract
 {
     /**
      * @param int $quantity
@@ -20,15 +20,10 @@ interface ImageRepositoryContract
 
     /**
      * @param array $data
-     * @return Image
+     * @return History
      */
-    public function create(array $data): Image;
+    public function create(array $data): History;
 
-    /**
-     * @param int $id
-     * @param array $data
-     * @return bool
-     */
     public function update(
         int $id,
         array $data,
@@ -36,11 +31,7 @@ interface ImageRepositoryContract
 
     public function delete(int $id): bool;
 
-    /**
-     * @param int $id
-     * @return Image|null
-     */
-    public function findById(int $id): Image|null;
+    public function findById(int $id): History|null;
 
     /**
      * @return Collection
