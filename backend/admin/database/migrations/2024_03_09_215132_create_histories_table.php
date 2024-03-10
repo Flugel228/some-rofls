@@ -17,8 +17,7 @@ return new class extends Migration
             $table->foreignId('image_id')->index()->constrained('images');
 
             $table->unsignedBigInteger('type');
-            $table->unsignedBigInteger('prev_history')->nullable();
-            $table->unsignedBigInteger('next_history')->nullable();
+            $table->unsignedBigInteger('prev_history');
 
             $table->timestamps();
             $table->softDeletes();
